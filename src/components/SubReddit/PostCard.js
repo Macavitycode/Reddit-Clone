@@ -18,17 +18,23 @@ export default class PostCard extends React.Component {
   }
 
   componentDidMount() {
-    redditconn.api.get("/r/funny/comments/ethqk6/", {}).then(data => {
-      var postData = data[1][0].data.children[0].data;
-      var commentData = data[1][1].data.children;
-      console.log("CommentData", commentData);
-      this.setState({
-        postData: postData,
-        commentData: commentData,
-        dict: data[1][0].data.children[0].data.selftext,
-        dict2: data[1][1].data.children
+    redditconn.api
+      .get(
+        //link here
+        "/r/buildapc/comments/etiysx/i_just_wanna_say_i_totally_regret_building_my/",
+        {}
+      )
+      .then(data => {
+        var postData = data[1][0].data.children[0].data;
+        var commentData = data[1][1].data.children;
+        console.log("CommentData", commentData);
+        this.setState({
+          postData: postData,
+          commentData: commentData,
+          dict: data[1][0].data.children[0].data.selftext,
+          dict2: data[1][1].data.children
+        });
       });
-    });
   }
 
   render() {
